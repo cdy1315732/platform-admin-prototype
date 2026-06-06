@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "jsx": "preserve",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "useDefineForClassFields": true,
+    "skipLibCheck": true,
+    "ignoreDeprecations": "6.0",
+    "baseUrl": ".",
+    "paths": {
+      "@platform/tokens": ["packages/tokens/src/index.ts"],
+      "@platform/registry": ["packages/registry/src/index.ts"],
+      "@platform/components": ["packages/components/src/index.ts"],
+      "@platform/patterns": ["packages/patterns/src/index.ts"],
+      "@platform/templates": ["packages/templates/src/index.ts"],
+      "@platform/prd-composer": ["packages/prd-composer/src/index.ts"]
+    }
+  }
+}

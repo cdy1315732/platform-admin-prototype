@@ -1,0 +1,16 @@
+{
+  "name": "@platform/patterns",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json --noEmit",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@platform/components": "workspace:*",
+    "@platform/registry": "workspace:*"
+  }
+}

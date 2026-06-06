@@ -1,0 +1,17 @@
+{
+  "name": "@platform/prd-composer",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@platform/registry": "workspace:*",
+    "@platform/templates": "workspace:*"
+  }
+}

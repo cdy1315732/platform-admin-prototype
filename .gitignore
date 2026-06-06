@@ -1,0 +1,12 @@
+node_modules/
+dist/*
+!dist/skills/
+dist/skills/*
+!dist/skills/platform-admin-prototype.skill
+.vitepress/cache/
+apps/docs/src/.vitepress/cache/
+apps/docs/src/.vitepress/dist/
+apps/playground/dist/
+test-results/
+playwright-report/
+.DS_Store

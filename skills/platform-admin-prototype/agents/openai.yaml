@@ -1,0 +1,7 @@
+interface:
+  display_name: "Platform Admin Prototype"
+  short_description: "Generate interactive PC admin prototypes from the local component system"
+  brand_color: "#165DFF"
+  default_prompt: "Use $platform-admin-prototype to turn this PC backend/admin PRD or requirement into an interactive prototype using the local customized platform components."
+policy:
+  allow_implicit_invocation: true

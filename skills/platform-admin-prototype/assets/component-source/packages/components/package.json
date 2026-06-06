@@ -1,0 +1,19 @@
+{
+  "name": "@platform/components",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles.css": "./src/styles.css"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@arco-design/web-vue": "^2.0.0",
+    "@platform/tokens": "workspace:*",
+    "vue": "^3.0.0"
+  }
+}

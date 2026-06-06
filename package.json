@@ -1,0 +1,44 @@
+{
+  "name": "platform-admin-prototype",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A reusable Vue 3 component system and Codex skill for interactive PC admin prototypes.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cdy1315732/platform-admin-prototype.git"
+  },
+  "homepage": "https://github.com/cdy1315732/platform-admin-prototype#readme",
+  "bugs": {
+    "url": "https://github.com/cdy1315732/platform-admin-prototype/issues"
+  },
+  "keywords": [
+    "codex-skill",
+    "admin-prototype",
+    "vue",
+    "arco-design",
+    "design-system"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev:docs": "pnpm --filter @platform/docs dev",
+    "dev:playground": "pnpm --filter @platform/playground dev",
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "dependencies": {
+    "@arco-design/web-vue": "^2.58.0",
+    "@arco-plugins/vite-vue": "^1.4.6",
+    "vue": "^3.5.35"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@vitejs/plugin-vue": "^5.2.4",
+    "typescript": "^6.0.3",
+    "vite": "^5.4.21",
+    "vitepress": "^1.6.4",
+    "vitest": "^1.6.1",
+    "vue-tsc": "^2.2.12"
+  }
+}
