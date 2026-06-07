@@ -1,6 +1,6 @@
 ---
 name: platform-admin-prototype
-description: Use when the user provides a PRD, requirements, screenshots, product notes, or document content and asks for an interactive PC backend/admin/B-end prototype, including management-console dashboards, charts, lists, filters, tables, forms, detail pages, secondary pages, modals, drawers, settings, workflows, or upload/switch/table interactions.
+description: Use when the user asks to plan, create, implement, review, verify, optimize, fix, or produce an annotated PC backend/admin/B-end prototype from PRDs, requirements, screenshots, product notes, document content, or an existing management-console project.
 ---
 
 # Platform Admin Prototype
@@ -13,62 +13,50 @@ Generate interactive PC backend/admin prototypes from the local customized platf
 
 Use this skill only for PC backend, B-end, admin, management-console, dashboard, list, form, detail, settings, modal, drawer, and workflow prototypes.
 
-Do not use it for mobile, dark mode, marketing pages, landing pages, consumer frontends, mini-programs, or pure documentation deliverables.
+Do not use it for mobile, dark mode, marketing pages, landing pages, consumer frontends, mini-programs, or documentation unrelated to a backend prototype.
 
-## References To Load
+## Workflow Selection
 
-Read only what is needed:
+Select the smallest workflow that fully satisfies the request:
 
-- `references/source-of-truth.md`: source priority and user-approved preferences.
-- `references/prd-to-prototype-workflow.md`: PRD extraction and prototype workflow.
-- `references/component-catalog.md`: available components and use cases.
-- `references/page-patterns.md`: backend page architecture.
-- `references/composition-patterns.md`: filter, table, form, detail, modal, drawer composition.
-- `references/interaction-states.md`: required interactivity and states.
-- `references/visual-rules.md`: layout, topbar, spacing, table, upload, and detail rules.
-- `references/chart-rules.md`: load only when the PRD explicitly includes chart, trend, distribution, ranking, metric visualization, or dashboard visualization requirements.
-- `references/usage-examples.md`: minimal Vue examples.
-- `references/component-code-map.md`: local implementation entrypoints and bundled source snapshot.
+- Read `workflows/plan.md` when the user asks to analyze, plan, structure, or design a backend prototype without implementation.
+- Read `workflows/build.md` when the user asks to create, implement, or update a backend prototype.
+- Read `workflows/review.md` when the user asks to inspect, review, verify, optimize, or fix an existing backend prototype.
+- For a complete PRD-to-prototype request, run `plan`, then `build`, then `review`. Review findings must be fixed before completion.
+- For a complete annotated PC backend prototype, finish `plan`, `build`, and `review` first, then **REQUIRED SUB-SKILL:** use `prototype-annotation` in `annotate` mode.
+- If the user only asks to annotate an existing prototype, use `prototype-annotation` directly instead of running this skill's PC backend workflows.
 
-## Implementation Stack
+Each workflow is independently usable. Build must accept either an existing plan or raw requirements. Review must accept any existing PC backend/admin prototype.
 
-Default to the existing component platform:
+## Shared Rules
 
-- Vue 3
-- Arco Design Vue as the lower-level dependency
-- `@platform/components` as the actual component source
-- `apps/playground` in a `platform-admin-prototype` repository checkout as the default prototype target
-
-Prefer local wrappers and composition components over raw Arco components. Use raw Arco only when the platform package has no wrapper for a required behavior, and keep the visual result consistent with the local specs.
-
-## Workflow
-
-1. Extract from the PRD or input: pages, fields, tables, filters, actions, states, permissions, flows, modals, drawers, and required feedback.
-2. Separate primary navigation pages from secondary pages. Button-triggered create/edit/detail pages are secondary pages and must not be added to the sidebar.
-3. Pick page patterns from the local docs: dashboard, list, form, detail, settings, tree management, people/permission management, modal, drawer, or result feedback.
-4. If the input includes charts or data visualization, load `references/chart-rules.md` and use ECharts examples only for chart pattern selection.
-5. Compose with local components first: `PlatformFilterPanel`, `PlatformTableCard`, `PlatformFormCard`, `PlatformDetailSummary`, `PlatformDataTable`, `PlatformPagination`, `PlatformModal`, `PlatformDrawer`, `PlatformResult`, and `PlatformSteps`.
-6. Implement real interactions: navigation, input echo, filter/reset feedback, row selection, bulk actions, sortable time columns, pagination, modal/drawer open-close, upload states, switch states, and form submit/cancel.
-7. Verify in the browser unless the user explicitly says not to verify.
-
-## Non-Negotiable Preferences
-
-- Build a real backend workflow, not a one-page component showcase.
+- Read only the references named by the selected workflow.
+- Prefer a checked-out `platform-admin-prototype` repository, then the bundled component snapshot.
+- Use `@platform/components` before raw Arco components.
+- Build real backend workflows, not one-page component showcases.
+- Keep primary pages in the sidebar and button-triggered create, edit, and detail pages as secondary pages.
+- Keep the parent sidebar item selected on secondary pages.
 - Keep card gaps consistent, usually 16px, and avoid nested cards.
 - Do not duplicate page titles or helper text in extra title cards.
-- Topbar uses concise breadcrumbs and right-side search/notification/user affordances.
-- Breadcrumbs omit unnecessary system names and show secondary pages only when appropriate.
-- Create/detail/edit pages triggered by buttons or table rows are secondary pages; keep the parent sidebar item highlighted.
-- Filters are left aligned; search and reset align with the filter row and keep consistent spacing.
-- Filter selects default to “全部...” options.
-- Table-level actions belong on the table card heading right side.
-- Bulk actions show only after row selection, next to selected count.
-- Date/time table sorting defaults to unselected and toggles on click.
-- Detail status uses colored dot plus text; priority uses compact tag.
-- Detail page header has no unnecessary back arrow; if actions wrap to a new line, add 12px vertical gap.
-- Modal titles are left aligned with 20px horizontal padding; modals are centered.
-- Upload defaults to no files and uses a gray upload button with clickable and disabled states.
-- Small switches must have a vertically centered knob.
+- Implement real interaction states when building.
+- Load `references/chart-rules.md` whenever requirements, PRD content, page names, or module intent include charts, trends, distributions, rankings, dashboards, statistics visualization, or any non-card visual representation of data. Treat "工单趋势", "统计看板", "分布", "占比", "排行", and similar backend analytics modules as chart requirements even when the user does not explicitly say "图表".
+- For real chart modules, Apache ECharts official examples are the required pattern source. Do not hand-draw product charts with SVG, CSS, canvas, divs, or pseudo-chart markup unless the user explicitly asks for a static placeholder.
+- After selecting an ECharts example, adapt its colors, typography, spacing, legend, tooltip, and container treatment to the local PC backend visual rules instead of copying the example's visual style verbatim.
+- Verify in the browser for build and review work unless the user explicitly says not to.
+- When delivering a runnable prototype, start or keep the local development server running, verify the accessible URL responds, and include the complete clickable URL in the final response. Do not report only that the prototype is runnable or ask the user to start it themselves.
+- Product annotations are optional. They must not replace, restyle, or weaken the base PC backend prototype.
+- Do not implement an annotation layer inside the base build workflow. Complete and verify the base prototype before using `prototype-annotation`.
+- When annotations are requested, use structured product-logic annotations from `prototype-annotation`: field name, component type, default value, required status, constraints, data source, action result, navigation target, and product-logic conditions. Do not write visual/UI rationale. Browser annotation panels must be draggable by their header and constrained to the visible viewport/prototype canvas. Annotation details expand inline under the selected note only and must not repeat title/component type/summary blocks already shown in the note item.
+
+## Complete Annotated Prototype Completion
+
+For a complete annotated PC backend request, the task is complete only when:
+
+1. The base PC backend prototype passes this skill's review workflow.
+2. Required PRD/prototype discrepancies have been resolved with the user.
+3. `prototype-annotation` finishes `annotate` mode.
+4. Annotation mode and annotation-disabled mode both pass verification.
+5. Annotation findings are fixed or clearly reported when they cannot be fixed.
 
 ## Source Priority
 
@@ -77,7 +65,7 @@ Use this order when there is ambiguity:
 1. This skill's bundled references.
 2. A checked-out `platform-admin-prototype` repository if present locally.
 3. This skill's bundled `assets/component-source` snapshot.
-4. ECharts examples only when `chart-rules.md` says the PRD has a real chart/data-visualization need; use them for chart pattern selection, never to override local page/component styling.
+4. ECharts official examples are mandatory for real chart/data-visualization modules; use them for chart type, option structure, interaction pattern, tooltip, legend, and axis behavior, then adapt visual styling to local page/component rules.
 5. Arco documentation only for low-level API troubleshooting, never to override local visual or interaction rules.
 
 ## Fallbacks
