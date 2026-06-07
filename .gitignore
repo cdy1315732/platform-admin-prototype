@@ -3,10 +3,12 @@ dist/*
 !dist/skills/
 dist/skills/*
 !dist/skills/platform-admin-prototype.skill
+!dist/skills/prototype-annotation.skill
 .vitepress/cache/
 apps/docs/src/.vitepress/cache/
 apps/docs/src/.vitepress/dist/
 apps/playground/dist/
 test-results/
 playwright-report/
+.runtime/
 .DS_Store
