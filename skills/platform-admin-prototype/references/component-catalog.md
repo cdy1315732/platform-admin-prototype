@@ -40,10 +40,10 @@
 
 | 组件 | 用途 | 关键规则 |
 | --- | --- | --- |
-| `PlatformDataTable` | 后台列表数据表 | 列表页主数据承载；配合 `PlatformTableCard` 使用。 |
+| `PlatformDataTable` | 后台列表数据表 | 列表页主数据承载；配合 `PlatformTableCard` 使用；可能超长的普通文本列必须显式配置实际溢出省略与完整值 Tooltip。 |
 | `PlatformPagination` | 分页 | 放在表格卡片底部右侧。 |
 | `PlatformTableSortCell` | 可排序表头 | 创建时间等时间列支持上下排序；默认上下都不选中。 |
-| `PlatformTableAvatarTextCell` | 头像 + 主副文本 | 头像必须保持正圆，不能被压扁。 |
+| `PlatformTableAvatarTextCell` | 头像 + 主副文本 | 头像必须保持正圆且不可被压扁；主文本和副文本分别处理单行溢出并保留完整原始值。 |
 | `PlatformTableStatusCell` | 状态列 | 优先用于表格状态；详情摘要中优先使用圆点 + 文案。 |
 | `PlatformTableTagCell` | 标签列 | 用于优先级、分类等紧凑标签。 |
 | `PlatformActionLinkGroup` | 表格行操作 | 详情、编辑、分配、日志、关闭等行级操作。 |
@@ -65,8 +65,8 @@
 | `PlatformModal` | 弹窗 | 弹窗居中；标题左对齐；左右 padding 20；不要居中标题。 |
 | `PlatformDrawer` | 抽屉 | 右侧详情、编辑、补充信息使用抽屉。 |
 | `PlatformResult` | 结果反馈 | 用于弹窗内或明确结果页；不要随意创建独立大结果页。 |
-| `PlatformTimeline` | 操作记录 | 详情页处理记录、日志、状态变化。 |
-| `PlatformTooltip` / `PlatformPopover` | 辅助说明 | 只在字段解释或轻量提示需要时使用。 |
+| `PlatformTimeline` | 操作记录 | 详情页处理记录、日志、状态变化；正文按 `long-text-display.md` 判断当前完整展示或历史三行展开/收起。 |
+| `PlatformTooltip` / `PlatformPopover` | 辅助说明 | 用于字段解释、轻量提示和真实溢出的快速识别文本；不得承载需要连续阅读的长段正文。 |
 | `showPlatformMessage` | 全局提示 | 保存、提交、删除成功等轻提示。 |
 
 ## 组合组件
@@ -78,7 +78,7 @@
 | `PlatformFilterPanel` | 筛选区 | 默认提供搜索/重置；筛选字段通过默认插槽放入 `PlatformFormItem`、输入框、下拉、日期区间。 |
 | `PlatformTableCard` | 表格主卡片 | `title` 写表格标题；`actions` 放导出/创建；`selectedCount > 0` 时显示批量操作。 |
 | `PlatformFormCard` | 创建/编辑表单页 | 标题、说明、表单字段、底部按钮可替换；按钮默认放底部右侧。 |
-| `PlatformDetailSummary` | 详情摘要 | 支持普通字段、状态圆点、紧凑标签；状态优先使用圆点 + 文案。 |
+| `PlatformDetailSummary` | 详情摘要 | 支持普通字段、状态圆点、紧凑标签；状态优先使用圆点 + 文案；仅紧凑摘要字段可单行省略并在真实溢出时显示完整值。 |
 
 ## 页面模板组件
 

@@ -18,6 +18,7 @@ Read only the references needed for the implementation:
 - `references/composition-patterns.md`
 - `references/interaction-states.md`
 - `references/visual-rules.md`
+- `references/long-text-display.md`
 - `references/usage-examples.md`
 - `references/component-code-map.md`
 - `references/chart-rules.md` whenever requirements, PRD content, page names, existing plan, or module intent include charts, trends, distributions, rankings, dashboards, statistics visualization, or any non-card visual representation of data
@@ -39,18 +40,20 @@ Read only the references needed for the implementation:
 5. Use form-item `required` for required indicators, keep Select / Dropdown triggers single-line, and preserve the standard `16px` gap between detail-page modules.
 6. Implement real validation for every required field. Blur/focus-out should validate the current field, while submit/save/confirm validates all required fields. For modal or drawer save actions, bind validation to the pre-save/pre-close guard (`before-ok`, `before-submit`, or equivalent) so invalid data cannot run the save handler, mutate data, close the overlay, or show success feedback. Submission must expose field-level red error states and actionable messages, block invalid submission without clearing input, and remove each error after that field becomes valid. Do not rely only on disabled submit buttons, `ok`-only early returns, or silent returns.
 7. Give every editable/selectable control an initial display: use the PRD-defined default value when one exists; otherwise add a control-specific placeholder. Keep actual values in normal text color and placeholders in weak hint color.
-8. For every real chart module, use an Apache ECharts official example as the implementation pattern, install ECharts if the local project does not already include it, and adapt the option colors and component styling to the local PC backend visual rules. Do not implement product charts as hand-written SVG, CSS-only charts, div bars, canvas drawings, or manually calculated polylines unless the user explicitly requests a static placeholder.
-9. Add conservative sample data when business data is missing.
-10. Add or update focused tests for important state, validation, navigation behavior, and chart option/data mapping when charts are implemented.
-11. Run the available build, typecheck, and tests.
-12. Start or keep the local development server running, confirm its complete URL responds successfully, and provide that clickable URL in the final response.
-13. Use `workflows/review.md` after implementation unless the user explicitly says not to verify.
+8. Implement the long-text decisions from `references/long-text-display.md`. Keep PRD-defined input/storage character limits separate from display overflow behavior and preserve complete raw values. Display current decision-critical information completely. Render historical long-form business records at a maximum of three lines and show inline expand/collapse only when they actually exceed that limit; do not use Tooltip for long paragraphs. Use Table column `ellipsis + tooltip` and Typography/shared platform wrappers only for quick-identification text and short compact summaries, plus an explicit node slot for tree-node names. Compound displays must separate fixed non-shrinking fields from flexible remaining-width fields; truncate only the flexible field that actually overflows. Do not truncate active editing content or fields marked as full-display content.
+9. For every real chart module, use an Apache ECharts official example as the implementation pattern, install ECharts if the local project does not already include it, and adapt the option colors and component styling to the local PC backend visual rules. Do not implement product charts as hand-written SVG, CSS-only charts, div bars, canvas drawings, or manually calculated polylines unless the user explicitly requests a static placeholder.
+10. Add conservative sample data when business data is missing, including long Chinese text and unbroken long English, email, or URL values where long-text handling applies.
+11. Add or update focused tests for important state, validation, navigation behavior, long-text full-value preservation, historical-record expand/collapse behavior, and chart option/data mapping when charts are implemented.
+12. Run the available build, typecheck, and tests.
+13. Start or keep the local development server running, confirm its complete URL responds successfully, and provide that clickable URL in the final response.
+14. Use `workflows/review.md` after implementation unless the user explicitly says not to verify.
 
 ## Completion Check
 
 - The prototype opens and the requested pages are reachable.
 - Secondary pages stay out of the sidebar and keep their parent selected.
 - Requested controls and workflows are interactive.
+- Current decision-critical text remains complete, historical long-form records expand and collapse from three lines when needed, compact flexible text truncates only after actual overflow, fixed compound fields remain complete, and data-length limits remain independent from display behavior.
 - Local platform components are preferred over raw Arco components.
 - Build, typecheck, and relevant tests pass, or failures are clearly reported.
 - The development server remains running, its accessible URL responds, and the final response includes the complete clickable URL.

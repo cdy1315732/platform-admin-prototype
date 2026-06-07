@@ -17,6 +17,7 @@ Read only the references needed for the review:
 - `references/source-of-truth.md`
 - `references/interaction-states.md`
 - `references/visual-rules.md`
+- `references/long-text-display.md`
 - `references/page-patterns.md`
 - `references/component-catalog.md` when checking component usage
 - `references/component-code-map.md` when inspecting implementation entrypoints
@@ -37,14 +38,16 @@ Read only the references needed for the review:
 11. Inspect detail-page sibling modules: each adjacent module keeps the standard `16px` vertical gap and no card edges touch.
 12. Inspect every input, number input, textarea, select, cascader, tree select, and date/time picker: each has either a justified real default value or a clear placeholder. Confirm actual values use normal text color and placeholders use weak hint color.
 13. Check scenario semantics: edit forms rehydrate existing values; create forms only preselect PRD-defined defaults and otherwise show placeholders.
-14. Inspect every real chart module: it is implemented from an Apache ECharts official example pattern, has tooltip/legend/hover or required chart interaction, and adapts colors to the local PC backend visual rules. Flag hand-written SVG, CSS-only charts, div bars, canvas drawings, manually calculated polylines, or pseudo-chart markup as review failures unless the user explicitly requested a static placeholder.
-15. Before delivery, start or keep the local development server running, verify the complete accessible URL responds, and include the clickable URL in the final response.
-16. Re-test after fixes.
+14. Inspect long business text using long Chinese values and unbroken long English, email, or URL values, then resize the browser or content area. Verify task-based behavior: current rejection/refusal reasons, remediation requirements, errors, warnings, and next-step instructions remain complete; historical long-form business records show at most three lines until expanded, expose expand/collapse only when actually needed, and never rely on Tooltip for paragraph reading; quick-identification text uses ellipsis and full-value Tooltip only after actual overflow. In compound displays, fixed identifiers, separators, avatars, icons, actions, and structure fields remain complete and are not squeezed. Verify PRD-defined input/storage character limits independently from display overflow behavior. Copy, edit, search, submit, expanded content, original line breaks, and paragraphs still use the complete raw value.
+15. Inspect every real chart module: it is implemented from an Apache ECharts official example pattern, has tooltip/legend/hover or required chart interaction, and adapts colors to the local PC backend visual rules. Flag hand-written SVG, CSS-only charts, div bars, canvas drawings, manually calculated polylines, or pseudo-chart markup as review failures unless the user explicitly requested a static placeholder.
+16. Before delivery, start or keep the local development server running, verify the complete accessible URL responds, and include the clickable URL in the final response.
+17. Re-test after fixes.
 
 ## Completion Check
 
 - Build, typecheck, and relevant tests pass, or remaining failures are documented.
 - Critical user workflows have been exercised.
 - No obvious overflow, overlap, broken navigation, or non-functional controls remain.
+- Long-text behavior preserves complete raw values, separates data-length limits from display limits, and follows the current-complete, historical-three-line-expandable, quick-identification compact, and compound fixed/flexible decisions.
 - Review findings are fixed when this is part of a complete prototype request.
 - The development server remains running and the final response includes its verified clickable URL.
