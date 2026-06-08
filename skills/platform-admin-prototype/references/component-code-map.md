@@ -60,11 +60,19 @@ import {
 } from '@platform/components';
 ```
 
+When the platform package does not expose the required icon, import the official Arco Icon directly:
+
+```ts
+import { IconSearch } from '@arco-design/web-vue/es/icon';
+```
+
+Do not use Emoji, Unicode symbols, text characters, improvised SVG/CSS drawings, or unknown image assets as UI icon substitutes. See `icon-rules.md`.
+
 ## Composition Entrypoints
 
 - Filters: `PlatformFilterPanel`
 - Tables: `PlatformTableCard` + `PlatformDataTable` + `PlatformPagination`
-- Forms: `PlatformFormCard` + `PlatformFormItem` + platform form controls
+- Forms: `PlatformFormCard` + `PlatformFormItem` + platform form controls. Center page-level form cards with a page-specific `max-width: 960px; margin-inline: auto` class; do not globally center `.platform-form-card`.
 - Details: `PlatformDetailPageTemplate` + `PlatformDetailSummary` + `PlatformSteps`
 - Modals: `PlatformModal` or `PlatformFormModalTemplate`
 - Drawers: `PlatformDrawer` or `PlatformDetailDrawerTemplate`

@@ -5,6 +5,7 @@
 ## 导入
 
 ```ts
+import { IconSearch } from '@arco-design/web-vue/es/icon';
 import {
   PlatformButton,
   PlatformDataTable,
@@ -51,7 +52,7 @@ import {
 ## 表单页核心结构
 
 ```vue
-<PlatformFormCard title="创建记录" description="填写基础信息后提交。">
+<PlatformFormCard class="page-form-card" title="创建记录" description="填写基础信息后提交。">
   <a-form layout="vertical">
     <PlatformFormItem label="标题" field="title">
       <PlatformInput v-model="form.title" placeholder="请输入标题" />
@@ -68,7 +69,35 @@ import {
     <PlatformButton type="primary" @click="submit">提交</PlatformButton>
   </template>
 </PlatformFormCard>
+
+<style scoped>
+.page-form-card {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 960px;
+  min-width: 0;
+  margin-inline: auto;
+}
+</style>
 ```
+
+规则：
+
+- 页面级表单通过页面专用 class 水平居中，不全局修改 `.platform-form-card`，避免影响弹窗或抽屉表单。
+- 卡片内部标题、说明和字段保持左对齐，底部操作按钮保持右对齐。
+
+## 官方图标
+
+```vue
+<PlatformButton type="primary">
+  <template #icon>
+    <IconSearch />
+  </template>
+  搜索
+</PlatformButton>
+```
+
+图标优先使用平台组件已有能力；平台没有对应图标时，从 `@arco-design/web-vue/es/icon` 导入官方 Icon。禁止使用 Emoji、Unicode 符号或普通文本字符模拟 UI 图标。
 
 ## 详情摘要
 

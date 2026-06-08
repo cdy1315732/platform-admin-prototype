@@ -76,7 +76,7 @@
 | 表格优先级、分类、轻量枚举 | `PlatformTableTagCell` | 使用紧凑标签，避免横向拉伸。 |
 | 表格行操作 | `PlatformActionLinkGroup` | 详情、编辑、分配、日志、关闭等动作以文本链接承载。 |
 | 时间列排序 | `PlatformTableSortCell` 或 `PlatformDataTable` sortable | 默认上下都不选中，点击后切换升序/降序。 |
-| 创建/编辑二级页面 | `PlatformFormCard` | 不进左侧导航；标题、说明、字段在同一卡片；按钮在底部右侧。 |
+| 创建/编辑二级页面 | `PlatformFormCard` | 不进左侧导航；页面级表单卡片在内容区水平居中且默认最大宽度 `960px`；内部内容左对齐，按钮在底部右侧。 |
 | 小型新增/编辑 | `PlatformModal` 或 `PlatformFormModalTemplate` | 弹窗居中，标题左对齐，左右 padding 20。 |
 | 侧边详情/长表单 | `PlatformDrawer` 或 `PlatformDetailDrawerTemplate` | 右侧滑出；不要做成独立页面。 |
 | 单条数据详情 | `PlatformDetailPageTemplate` + `PlatformDetailSummary` | 状态用圆点 + 文案，优先级用紧凑标签；摘要高度克制。 |
