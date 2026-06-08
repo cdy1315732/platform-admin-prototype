@@ -9,6 +9,7 @@
 - 不临时创造新的视觉样式；先检查本目录组件和组合模式。
 - 组件内容允许替换，结构和交互规则优先复用。
 - PC 后台原型默认使用 Vue 3 + Arco Design Vue + `@platform/components`。
+- 图标使用遵循 `icon-rules.md`：优先平台图标，其次 Arco Design Vue 官方 Icon，禁止用 Emoji、Unicode 符号、文本字符或临时自绘图形充当 UI 图标。
 
 ## 官网使用限制
 
@@ -77,7 +78,7 @@
 | --- | --- | --- |
 | `PlatformFilterPanel` | 筛选区 | 默认提供搜索/重置；筛选字段通过默认插槽放入 `PlatformFormItem`、输入框、下拉、日期区间。 |
 | `PlatformTableCard` | 表格主卡片 | `title` 写表格标题；`actions` 放导出/创建；`selectedCount > 0` 时显示批量操作。 |
-| `PlatformFormCard` | 创建/编辑表单页 | 标题、说明、表单字段、底部按钮可替换；按钮默认放底部右侧。 |
+| `PlatformFormCard` | 创建/编辑表单页 | 页面级表单卡片默认在内容区水平居中且最大宽度 `960px`；内部内容左对齐，按钮默认放底部右侧。 |
 | `PlatformDetailSummary` | 详情摘要 | 支持普通字段、状态圆点、紧凑标签；状态优先使用圆点 + 文案；仅紧凑摘要字段可单行省略并在真实溢出时显示完整值。 |
 
 ## 页面模板组件

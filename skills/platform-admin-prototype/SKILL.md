@@ -39,6 +39,7 @@ Each workflow is independently usable. Build must accept either an existing plan
 - Keep card gaps consistent, usually 16px, and avoid nested cards.
 - Do not duplicate page titles or helper text in extra title cards.
 - Apply `references/long-text-display.md` to business text and data display. Classify text by the user's current task before choosing complete display, inline expand/collapse, or compact ellipsis; always preserve complete raw values and keep data-length limits separate from display limits.
+- Apply `references/icon-rules.md` to all UI icons. Never use Emoji, Unicode symbols, text characters, or improvised SVG/CSS drawings as functional UI icons; prefer platform icons, then Arco Design Vue official Icons.
 - Implement real interaction states when building.
 - Load `references/chart-rules.md` whenever requirements, PRD content, page names, or module intent include charts, trends, distributions, rankings, dashboards, statistics visualization, or any non-card visual representation of data. Treat "工单趋势", "统计看板", "分布", "占比", "排行", and similar backend analytics modules as chart requirements even when the user does not explicitly say "图表".
 - For real chart modules, Apache ECharts official examples are the required pattern source. Do not hand-draw product charts with SVG, CSS, canvas, divs, or pseudo-chart markup unless the user explicitly asks for a static placeholder.
